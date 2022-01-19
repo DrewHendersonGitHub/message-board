@@ -1,10 +1,12 @@
 class MessagesController < ApplicationController
 
   def index
-    # @messages = Message.all
-    # json_response(@messages)
-    name = params[:name]
-    @messages = Message.search(name)
+    if params[:name]
+      name = params[:name]
+      @messages = Message.search(name)
+    else
+      @messages = Message.all
+    end
     json_response(@messages)
   end
 
