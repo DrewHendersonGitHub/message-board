@@ -1,7 +1,10 @@
 class MessagesController < ApplicationController
 
   def index
-    @messages = Message.all
+    # @messages = Message.all
+    # json_response(@messages)
+    name = params[:name]
+    @messages = Message.search(name)
     json_response(@messages)
   end
 
@@ -31,6 +34,6 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.permit(:author, :content)
+    params.permit(:author, :content, :board_id)
   end
 end
