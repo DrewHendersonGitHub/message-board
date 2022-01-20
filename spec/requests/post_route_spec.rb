@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 describe "post a message route", :type => :request do
+  before { board = Board.create!(author: "test_author", content: "test_content", id: 1) }
 
   before do 
-    post '/messages', params: { :author => 'test_author', :content => 'test_content' }
+    post '/boards/1/messages', params: { :author => 'test_author', :content => 'test_content' }
   end
 
   it 'returns the author name' do

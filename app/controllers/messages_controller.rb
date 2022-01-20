@@ -31,7 +31,7 @@ class MessagesController < ApplicationController
   end
 
   private
-  def json_response(object, status = :ok)
+  def json_response(object, status = :created)
     render json: object, status: status
   end
 
