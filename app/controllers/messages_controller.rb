@@ -1,36 +1,44 @@
 class MessagesController < ApplicationController
 
   def index
-    @messages = Message.all
-    json_response(@messages)
+    if params[:author]
+      @messages = Message.search(params[:author])
+    else
+      @messages = Message.all
+    end
+    json_response(@messages, :ok)
   end
 
   def show
     @message = Message.find(params[:id])
-    json_response(@message)
+    json_response(@message, :ok)
   end
 
   def create
     @message = Message.create(message_params)
-    json_response(@message)
+    json_response(@message, :created)
   end
 
   def update
     @message = Message.find(params[:id])
-    @message.update(message_params)
+    if @message.update!(message_params)
+      render status: 200, json: {
+      message: "This message has been updated successfully."
+      }
+    end
   end
 
   def destroy
     @message = Message.find(params[:id])
-    @message.destroy
+    if @message.destroy
+      render status: 200, json: {
+        message: "This message has been deleted successfully."
+      }
+    end
   end
 
   private
-  def json_response(object, status = :ok)
-    render json: object, status: status
-  end
-
   def message_params
-    params.permit(:author, :content)
+    params.permit(:author, :content, :board_id)
   end
 end

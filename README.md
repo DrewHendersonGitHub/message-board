@@ -1,42 +1,94 @@
+# __Message Board__
+
+#### _Epicodus' Ruby week 6 Practice project for Rails API_
+
+#### _Created by: **Matt C. & Isaac O.**_
+
+## Technologies Used
+
+* _Ruby_
+* _Gems_
+* _Bundler_
+* _RSpec_
+* _IRB_
+* _Pry_
+* _Postgres_
+* _SQL_
+* _SQL Designer_
+* _Rails_
+* _ActiveRecord_
+* _Bootstrap SCSS_
+* _Faker_
+* _Factory Bot_
+* _Docker_
+
 ## Description
+_A simple API to simulate a message board to practice creating APIs. Full CRUD funtionality for creating boards and posting messages to them. Also able to search a board for messages by a specific author._
 
-This is a basic scaffolded Rails API using Docker with Ruby 2.6.5, Rails 5.2.4, and Postgres 12.1. This project can be used in lieu of installing Ruby, Rails and Postgres on your machine when you are working with Rails APIs during week 6 of Epicodus. When you run `docker-compose up`, Docker will create two containers on your machine: a Ruby/Rails environment running the local server and a Postgres container where your database is stored.
+## Endpoints
 
-### Running Rails and Postgres Servers
+| Usage | METHOD | URL | Params |
+| :---  | :---:  | :--- | ---: |
+| See all boards | GET | `localhost:3000/boards` |  |
+| See a specific board | GET | `localhost:3000/boards/:id` |  |
+| Create a board | POST | `localhost:3000/boards` | _author, content_ |
+| Update a board | PUT | `localhost:3000/boards/:id` | _author, content_ |
+| Delete a board | DELETE | `localhost:3000/boards/:id` |  |
+| See all messages on a board | GET | `Localhost:3000/boards/:board_id/messages` |  |
+| See a specific message | GET | `Localhost:3000/boards/:board_id/messages/:id` |  |
+| Create a message | POST | `Localhost:3000/boards/:board_id/messages` |  _author, content_ |
+| Update a message | PUT | `Localhost:3000/boards/:board_id/messages/:id` | _author, content_ |
+| Delete a message | DELETE | `Localhost:3000/boards/:board_id/messages/:id` |  |
+| Search a board for messages by a specific author | GET | `localhost:3000/boards/:board_id/messages?author=` | _author_ |
 
-The included code has a single API endpoint at: `http://localhost:3000/quotes`. Once you create and migrate the database, you'll be able to access it.
+## Responses
 
-* First run `docker-compose up` to build the project. Next, you'll need to add a database.
-
-### Running Shell Commands
-
-To access a shell environment to run `rails c`, run migrations, or run other `rake` and `rails` tasks such as `rails routes`, you'll need to do the following.
-
-Run the following command in the root directory of the project:
-
+_Expect responses for boards to look like this:_
 ```
-$ docker-compose run api sh
+{
+  "id" : integer,
+  "content" : string,
+  "author" : string
+}
 ```
 
-It's not necessary for the containers to be running (with `$ docker-compose up`). Note that the service name has been changed from `web` to `api`.
+_And expect responses for messages to look like this:_
+```
+{
+  "id" : integer,
+  "content" : string,
+  "author" : string,
+  "board_id" : integer
+}
+```
 
-This will open a shell where you can run any commands in the web application's environment. This includes the following commands:
+## Using this app with Ruby 2.6.5 installed natively (no Docker)
 
-* `$ bundle exec rake db:create` (and any other Rake commands)
-* `$ rails routes` and `$ rails c` (as well as any other Rails commands)
-* `$ bundle exec rspec` (to run tests)
-* `$ irb` (if you just need a basic Ruby REPL)
+* _Run_ `git clone https://github.com/catperso/message-board` _in your terminal to clone this repository to your device, then navigate to the project directory._
+* _Run_ `bundle install` _to package the Gems and set up Gemfile.lock._
+* _Run_ `rake db:setup` _to set up the databases, tables, and seed them with placeholder entries._
+* _Run_ `rspec` _if you want to run the model and request specs._
+* _Run_ `rails s` _to start a local server._
+* _Make calls to the API server with endpoints listed above._
 
-Once you create and migrate the database, you can go to `http://localhost:3000/quotes` in Postman or the browser to see the API's response.
+## Using this app with Docker
 
-### What if I want to add more gems to my project?
+* _First make sure Docker is installed as per the official [instructions](https://docs.docker.com/get-docker/)._
+* _Run_ `docker pull ruby:2.6.5` _to pull an image for the same version of Ruby this project was built with._
+* _Run_ `git clone https://github.com/catperso/message-board` _in your terminal to clone this repository to your device, then navigate to the project directory._
+* _Run_ `docker-compose run api bundle install` _to bundle the gems and set up Gemfile.lock._
+* _Run_ `docker-compose run api sh` _to start a shell inside the container._
+* _Run_ `rake db:setup` _in the container shell to set up the databases, tables, and seed them with placeholder entries._
+* _Run_ `rspec` _in the container shell if you want to run the model and request specs._
+* _In your normal terminal, run_ `docker-compose up --build` _to bundle the app and start up the database and server containers properly attached to eachother._
+* _Make calls to the API server with endpoints listed above._
 
-You'll need to complete the following steps:
+## Known Bugs
 
-* First, add the gems to the project.
+_None so far._  Maybe an ant
 
-* Run `docker-compose run web bundle install`. This will bundle the new gems.
+## License - [MIT](https://opensource.org/licenses/MIT)
 
-* Next, run `docker-compose up --build`. This will rebuild the project.
+_If you run into any problems/bugs feel free to send me an email [(mc.casperson@gmail.com)](mailto:mc.casperson@gmail.com) with details._
 
-To read Docker's documentation on running projects using Ruby and Rails, see [Quickstart: Compose and Rails](https://docs.docker.com/compose/rails/).
+Copyright (c) _2022 Matt C. & Isaac O._
