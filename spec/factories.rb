@@ -4,6 +4,9 @@ FactoryBot.define do
     content {Faker::Movie.quote}
     board_id {1}
   end
-end
 
-# Faker::Number.number(digits: 1)
+  factory(:board) do
+    author {Faker::JapaneseMedia::OnePiece.character}
+    content {Faker::Games::LeagueOfLegends.location}
+  end
+end
