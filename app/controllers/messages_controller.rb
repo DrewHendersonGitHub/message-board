@@ -1,9 +1,8 @@
 class MessagesController < ApplicationController
 
   def index
-    if params[:name]
-      name = params[:name]
-      @messages = Message.search(name)
+    if params[:author]
+      @messages = Message.search(params[:author])
     else
       @messages = Message.all
     end

@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
   belongs_to :board
 
-  scope :search, -> (name_parameter) { where("lower(author) like ?", "%#{name_parameter.downcase}%") }
+  scope :search, -> (author_parameter) { where("lower(author) like ?", "%#{author_parameter.downcase}%") }
 end
