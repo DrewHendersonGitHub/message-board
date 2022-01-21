@@ -19,6 +19,7 @@ gem 'faker'
 gem 'jwt'
 gem 'simple_command'
 gem 'rswag'
+gem 'will_paginate', '~> 3.3'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

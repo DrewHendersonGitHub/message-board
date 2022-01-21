@@ -3,8 +3,10 @@ class MessagesController < ApplicationController
   def index
     if params[:author]
       @messages = Message.search(params[:author])
-    else
+    elsif !params[:page]
       @messages = Message.all
+    else
+      @messages = Message.paginate(page: params[:page], per_page: 5)
     end
     json_response(@messages, :ok)
   end
