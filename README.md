@@ -23,7 +23,7 @@
 * _Docker_
 
 ## Description
-_A simple API to simulate a message board to practice creating APIs. Full CRUD funtionality for creating boards and posting messages to them. Also able to search a board for messages by a specific author._
+_A simple API to simulate a message board to practice creating APIs. Full CRUD funtionality for creating boards and posting messages to them. Also able to search a board for messages by a specific author. Paginated responses return 5 messages per page._
 
 ## Endpoints
 
@@ -40,6 +40,7 @@ _A simple API to simulate a message board to practice creating APIs. Full CRUD f
 | Update a message | PUT | `Localhost:3000/boards/:board_id/messages/:id` | _author, content_ |
 | Delete a message | DELETE | `Localhost:3000/boards/:board_id/messages/:id` |  |
 | Search a board for messages by a specific author | GET | `localhost:3000/boards/:board_id/messages?author=` | _author_ |
+| Paginate message response | GET | `localhost:3000/boards/:board_id/messages?page=` | _page_ |
 
 ## Responses
 
